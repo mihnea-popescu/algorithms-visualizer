@@ -2,6 +2,8 @@
 
 An interactive web application for visualizing the Floyd-Warshall algorithm, a dynamic programming algorithm for finding shortest paths in a weighted graph. Built with React and TypeScript.
 
+**🌐 Live Demo**: [https://mihnea-popescu.github.io/algorithms-visualizer/](https://mihnea-popescu.github.io/algorithms-visualizer/)
+
 ## Features
 
 - **Interactive Matrix Input**: Create and edit adjacency matrices with customizable graph sizes (1-12 vertices)

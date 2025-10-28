@@ -89,6 +89,9 @@ export default function GraphVisualization({
           ctx.fillText(label, node.x, node.y);
         }}
         linkWidth={(link: GraphLink) => Math.max(2, Math.sqrt(link.weight) / 2)}
+        linkDirectionalArrowLength={6}
+        linkDirectionalArrowRelPos={0.8}
+        linkDirectionalArrowColor={() => "#9bb0c3"}
         cooldownTicks={200}
         enableZoomInteraction={true}
         enableNodeDrag={true}

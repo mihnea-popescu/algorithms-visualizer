@@ -30,16 +30,16 @@ export function floydWarshallSteps(input: Matrix): Step[] {
   const dist: Matrix = input.map((r) => r.slice());
   const steps: Step[] = [];
 
-  for (let k = 0; k < n; k++) {
+  for (let k = 1; k <= n; k++) {
     const updates: Set<string> = new Set();
     const debug: Record<string, string> = {};
     for (let i = 0; i < n; i++) {
       for (let j = 0; j < n; j++) {
-        const throughK = safeAdd(dist[i][k], dist[k][j]);
+        const throughK = safeAdd(dist[i][k - 1], dist[k - 1][j]);
         if (throughK < dist[i][j]) {
           debug[`${i}-${j}`] = `min(${displayCell(dist[i][j])}, ${displayCell(
-            dist[i][k]
-          )} + ${displayCell(dist[k][j])} = ${throughK}) → ${throughK}`;
+            dist[i][k - 1]
+          )} + ${displayCell(dist[k - 1][j])} = ${throughK}) → ${throughK}`;
           dist[i][j] = throughK;
           updates.add(`${i}-${j}`);
         }

@@ -8,7 +8,7 @@ An interactive web application for visualizing the Floyd-Warshall algorithm, a d
 
 - **Interactive Matrix Input**: Create and edit adjacency matrices with customizable graph sizes (1-12 vertices)
 - **Step-by-Step Visualization**: Watch the Floyd-Warshall algorithm execute step by step with detailed explanations
-- **Graph Visualization**: Interactive force-directed graph representation of your input matrix
+- **Graph Visualization**: Interactive force-directed graph representation with directional edges (arrows show direction)
 - **Real-time Updates**: See which cells are updated at each step with hover tooltips showing calculation details
 - **Educational Content**: Built-in explanations of the Floyd-Warshall formula and algorithm steps
 
@@ -26,9 +26,10 @@ Where `k` represents the intermediate vertex being considered at each step.
 
 1. **Set Graph Size**: Use the size input to specify the number of vertices (n×n matrix)
 2. **Input Edge Weights**:
-   - Enter numeric values for edge weights
+   - Enter numeric values for edge weights (directed edges)
    - Leave blank or use "∞" for no edge between vertices
    - Diagonal elements are automatically set to 0
+   - Note: matrix[i][j] represents the weight of edge from vertex i to vertex j
 3. **Compute**: Click the "Compute" button to run the Floyd-Warshall algorithm
 4. **Navigate Steps**: Use the navigation controls to step through the algorithm:
    - ⏮ First step

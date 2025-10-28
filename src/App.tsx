@@ -14,10 +14,10 @@ import "./styles.css";
 const DEFAULT_N = 4;
 // A small default graph with some edges:
 const DEFAULT_MATRIX: Matrix = [
-  [0, 3, INF, 7],
-  [8, 0, 2, INF],
-  [5, INF, 0, 1],
-  [2, INF, INF, 0],
+  [0, 1, INF, 4],
+  [INF, 0, 5, 2],
+  [INF, INF, 0, INF],
+  [INF, INF, 1, 0],
 ];
 
 function labelFor(i: number): string {
@@ -139,7 +139,7 @@ export default function App() {
             />
             <div className="step-label">
               {`k = ${currentStep?.k}  (${
-                labels[currentStep!.k]
+                labels[currentStep!.k - 1]
               } allowed as intermediate)`}
             </div>
           </div>
@@ -156,14 +156,14 @@ export default function App() {
             <div className="formula-explanation">
               <p>
                 <strong>
-                  Step k = {currentStep.k} ({labels[currentStep.k]}):
+                  Step k = {currentStep.k} ({labels[currentStep.k - 1]}):
                 </strong>{" "}
-                We allow vertex {labels[currentStep.k]} as an intermediate
+                We allow vertex {labels[currentStep.k - 1]} as an intermediate
                 vertex.
               </p>
               <p>
                 For each pair of vertices (i, j), we check if going through
-                vertex {labels[currentStep.k]} gives us a shorter path. If{" "}
+                vertex {labels[currentStep.k - 1]} gives us a shorter path. If{" "}
                 <code>dist[i][k] + dist[k][j] &lt; dist[i][j]</code>, we update
                 the distance.
               </p>
@@ -179,8 +179,9 @@ export default function App() {
       <section>
         <h2>Adjacency matrix (input)</h2>
         <p>
-          Enter edge weights. Leave blank or use "∞" for no edge. Diagonal is
-          fixed to 0.
+          Enter edge weights for directed edges. Leave blank or use "∞" for no
+          edge. Diagonal is fixed to 0. Matrix[i][j] represents the weight of
+          edge from vertex i to vertex j.
         </p>
         <EditableMatrix
           n={n}
@@ -192,7 +193,10 @@ export default function App() {
 
       <section>
         <h2>Graph Visualization</h2>
-        <p>Visual representation of your adjacency matrix as a graph.</p>
+        <p>
+          Visual representation of your adjacency matrix as a directed graph.
+          Arrows show edge direction.
+        </p>
         <GraphVisualization matrix={matrix} labels={labels} />
       </section>
 

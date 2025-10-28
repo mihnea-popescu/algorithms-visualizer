@@ -1,0 +1,149 @@
+:root {
+  --bg: #0b0f14;
+  --panel: #121821;
+  --text: #e7edf5;
+  --muted: #9bb0c3;
+  --accent: #60a5fa;
+  --updated: #16a34a33;
+  --border: #213040;
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial,
+    sans-serif;
+  background: radial-gradient(1200px 800px at 20% -10%, #101826, #0b0f14);
+  color: var(--text);
+}
+
+.app {
+  max-width: 960px;
+  margin: 28px auto;
+  padding: 0 16px 48px;
+}
+
+h1 {
+  margin: 0 0 16px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+h2 {
+  margin-top: 28px;
+}
+
+.controls {
+  padding: 12px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.controls .row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 6px 0;
+}
+label {
+  color: var(--muted);
+}
+input[type="number"] {
+  width: 80px;
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  background: #0f1722;
+  color: var(--text);
+  border-radius: 8px;
+}
+
+button {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #0f1722;
+  color: var(--text);
+  cursor: pointer;
+}
+button.primary {
+  background: var(--accent);
+  border: none;
+  color: #0b111a;
+  font-weight: 600;
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+input[type="range"] {
+  width: 300px;
+}
+
+.matrix-wrapper {
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--panel);
+}
+.matrix {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 420px;
+}
+.matrix th,
+.matrix td {
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  text-align: center;
+}
+.matrix th {
+  background: #0f1722;
+  color: var(--muted);
+  font-weight: 600;
+}
+.matrix td.updated {
+  background: var(--updated);
+}
+
+.matrix.editable input {
+  width: 72px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: #0a111a;
+  color: var(--text);
+  text-align: center;
+}
+.matrix.editable .diag {
+  color: var(--muted);
+}
+.legend {
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1a2230;
+  border: 1px solid #334155;
+  color: #e2e8f0;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 13px;
+  max-width: 220px;
+  white-space: normal;
+  pointer-events: none;
+  z-index: 20;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}

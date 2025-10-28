@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
 import MatrixTable from "./algorithms/floyd/FloydMatrixTable";
+import GraphVisualization from "./components/GraphVisualization";
 import {
   INF,
   Matrix,
@@ -178,7 +179,7 @@ export default function App() {
       <section>
         <h2>Adjacency matrix (input)</h2>
         <p>
-          Enter edge weights. Leave blank or use “∞” for no edge. Diagonal is
+          Enter edge weights. Leave blank or use "∞" for no edge. Diagonal is
           fixed to 0.
         </p>
         <EditableMatrix
@@ -187,6 +188,12 @@ export default function App() {
           onChange={handleCellChange}
           headers={labels}
         />
+      </section>
+
+      <section>
+        <h2>Graph Visualization</h2>
+        <p>Visual representation of your adjacency matrix as a graph.</p>
+        <GraphVisualization matrix={matrix} labels={labels} />
       </section>
 
       <section>

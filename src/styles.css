@@ -217,3 +217,16 @@ input[type="range"] {
   font-size: 13px;
   color: var(--accent);
 }
+
+.graph-container {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--panel);
+  padding: 16px;
+  margin: 16px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 450px;
+  width: 100%;
+}

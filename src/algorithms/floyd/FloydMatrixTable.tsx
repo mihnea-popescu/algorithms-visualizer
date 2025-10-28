@@ -43,9 +43,17 @@ export default function MatrixTable({
                     onMouseEnter={() => setHovered(key)}
                     onMouseLeave={() => setHovered(null)}
                     style={{ position: "relative" }}
+                    title={
+                      debug?.[key] ? "Hover for calculation details" : undefined
+                    }
                   >
                     {displayCell(v)}
-                    {showTip && <div className="tooltip">{debug![key]}</div>}
+                    {showTip && (
+                      <div className="tooltip">
+                        <div className="tooltip-title">Calculation:</div>
+                        <div className="tooltip-content">{debug![key]}</div>
+                      </div>
+                    )}
                   </td>
                 );
               })}

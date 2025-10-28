@@ -145,6 +145,36 @@ export default function App() {
         )}
       </section>
 
+      {currentStep && (
+        <section className="formula-section">
+          <h2>Floyd-Warshall Formula</h2>
+          <div className="formula-box">
+            <div className="formula-main">
+              <code>dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])</code>
+            </div>
+            <div className="formula-explanation">
+              <p>
+                <strong>
+                  Step k = {currentStep.k} ({labels[currentStep.k]}):
+                </strong>{" "}
+                We allow vertex {labels[currentStep.k]} as an intermediate
+                vertex.
+              </p>
+              <p>
+                For each pair of vertices (i, j), we check if going through
+                vertex {labels[currentStep.k]} gives us a shorter path. If{" "}
+                <code>dist[i][k] + dist[k][j] &lt; dist[i][j]</code>, we update
+                the distance.
+              </p>
+              <p>
+                <strong>Updates in this step:</strong>{" "}
+                {currentStep.updates.size} cells were improved.
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
+
       <section>
         <h2>Adjacency matrix (input)</h2>
         <p>
@@ -169,13 +199,15 @@ export default function App() {
             matrix={currentStep.matrix}
             updates={currentStep.updates}
             headers={labels}
+            debug={currentStep.debug}
           />
         ) : (
           <MatrixTable matrix={matrix} headers={labels} />
         )}
         {currentStep && (
           <p className="legend">
-            Cells highlighted were improved during this k-step.
+            Cells highlighted were improved during this k-step. Hover over cells
+            to see calculation details.
           </p>
         )}
       </section>

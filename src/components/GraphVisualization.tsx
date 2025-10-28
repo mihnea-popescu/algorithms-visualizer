@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import ForceGraph2D from "react-force-graph-2d";
-import { Matrix, INF } from "../algorithms/floyd/floydAlgorithm";
+import { Matrix } from "../algorithms/floyd/floydAlgorithm";
 
 type GraphVisualizationProps = {
   matrix: Matrix;

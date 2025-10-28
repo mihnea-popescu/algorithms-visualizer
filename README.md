@@ -1,14 +1,70 @@
-# Getting Started with Create React App
+# Floyd-Warshall Algorithm Visualizer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An interactive web application for visualizing the Floyd-Warshall algorithm, a dynamic programming algorithm for finding shortest paths in a weighted graph. Built with React and TypeScript.
+
+## Features
+
+- **Interactive Matrix Input**: Create and edit adjacency matrices with customizable graph sizes (1-12 vertices)
+- **Step-by-Step Visualization**: Watch the Floyd-Warshall algorithm execute step by step with detailed explanations
+- **Graph Visualization**: Interactive force-directed graph representation of your input matrix
+- **Real-time Updates**: See which cells are updated at each step with hover tooltips showing calculation details
+- **Educational Content**: Built-in explanations of the Floyd-Warshall formula and algorithm steps
+
+## Algorithm Overview
+
+The Floyd-Warshall algorithm finds the shortest paths between all pairs of vertices in a weighted graph. It uses the dynamic programming approach with the recurrence relation:
+
+```
+dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
+```
+
+Where `k` represents the intermediate vertex being considered at each step.
+
+## How to Use
+
+1. **Set Graph Size**: Use the size input to specify the number of vertices (n×n matrix)
+2. **Input Edge Weights**:
+   - Enter numeric values for edge weights
+   - Leave blank or use "∞" for no edge between vertices
+   - Diagonal elements are automatically set to 0
+3. **Compute**: Click the "Compute" button to run the Floyd-Warshall algorithm
+4. **Navigate Steps**: Use the navigation controls to step through the algorithm:
+   - ⏮ First step
+   - ◀ Previous step
+   - ▶ Next step
+   - ⏭ Last step
+   - Slider for quick navigation
+5. **Explore Results**:
+   - Hover over highlighted cells to see calculation details
+   - View the interactive graph visualization
+   - Understand the algorithm progression through the formula explanations
+
+## Technical Details
+
+- **Frontend**: React 19 with TypeScript
+- **Visualization**: react-force-graph-2d for interactive graph rendering
+- **Algorithm**: Custom implementation of Floyd-Warshall with step-by-step tracking
+- **Styling**: Custom CSS with responsive design
+
+## Project Structure
+
+```
+src/
+├── algorithms/
+│   └── floyd/
+│       ├── floydAlgorithm.ts      # Core algorithm implementation
+│       └── FloydMatrixTable.tsx   # Matrix display component
+├── components/
+│   └── GraphVisualization.tsx     # Interactive graph component
+├── App.tsx                        # Main application component
+└── styles.css                     # Application styles
+```
 
 ## Available Scripts
 
-In the project directory, you can run:
-
 ### `yarn start`
 
-Runs the app in the development mode.\
+Runs the app in development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
@@ -16,7 +72,7 @@ You will also see any lint errors in the console.
 
 ### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
+Launches the test runner in interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `yarn build`
@@ -27,20 +83,14 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
 ### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
 ## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- [Floyd-Warshall Algorithm](https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm)
+- [React Documentation](https://reactjs.org/)
+- [Create React App Documentation](https://facebook.github.io/create-react-app/docs/getting-started)

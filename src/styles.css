@@ -25,9 +25,17 @@ body {
 }
 
 .app {
+  width: 100%;
+  padding: 28px 0 48px;
+  background: radial-gradient(1200px 800px at 20% -10%, #101826, #0b0f14);
+  justify-content: center;
+}
+
+.app > h1,
+.app > section {
   max-width: 960px;
-  margin: 28px auto;
-  padding: 0 16px 48px;
+  margin: 0 auto;
+  padding: 0 16px;
 }
 
 h1 {
@@ -88,7 +96,7 @@ input[type="range"] {
 }
 
 .matrix-wrapper {
-  overflow: auto;
+  overflow: visible;
   border: 1px solid var(--border);
   border-radius: 10px;
   background: var(--panel);
@@ -103,6 +111,7 @@ input[type="range"] {
   border: 1px solid var(--border);
   padding: 6px 10px;
   text-align: center;
+  background: var(--panel);
 }
 .matrix th {
   background: #0f1722;
@@ -132,9 +141,10 @@ input[type="range"] {
 
 .tooltip {
   position: absolute;
-  bottom: 110%;
+  bottom: 100%;
   left: 50%;
   transform: translateX(-50%);
+  margin-bottom: 8px;
   background: #1a2230;
   border: 1px solid #334155;
   color: #e2e8f0;
@@ -144,7 +154,7 @@ input[type="range"] {
   max-width: 280px;
   white-space: normal;
   pointer-events: none;
-  z-index: 20;
+  z-index: 1000;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
 }
 

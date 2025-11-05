@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import MatrixChainTable from "./MatrixChainTable";
 import {
@@ -37,6 +37,12 @@ export default function MatrixChainPage() {
       dims.push(matrices[i].cols);
     }
     return dims;
+  }, [matrices]);
+
+  // Reset steps when matrices change
+  useEffect(() => {
+    setSteps(null);
+    setStepIndex(0);
   }, [matrices]);
 
   function addMatrix() {

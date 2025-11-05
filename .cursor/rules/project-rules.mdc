@@ -1,0 +1,203 @@
+---
+alwaysApply: true
+---
+
+# 🧠 LLM Context — Algorithms Visualizer Project
+
+You are working on a **React + TypeScript** project called **Algorithms Visualizer**.
+
+Your task is to help build and extend this app by generating consistent React pages and components that follow these conventions.
+
+---
+
+## 📺 Project Overview
+
+- Interactive educational platform for **visualizing algorithms**.
+- Built with **React** and **TypeScript**.
+- Uses **React Router** for page navigation.
+- When a new algorithm page is added, it must also be added to the static `public/sitemap.xml`.
+
+---
+
+## 📚 Homepage Structure
+
+The homepage lists **categories of algorithms**:
+
+1. Graph Theory
+2. Dynamic Programming
+3. Greedy
+4. Sorting
+
+Each category contains a **list of algorithms and classical problems**.
+For example:
+
+- Graph Theory → Floyd–Warshall, Dijkstra, Bellman-Ford, Traveling Salesman
+- Dynamic Programming → Knapsack, Longest Common Subsequence
+- Sorting → Merge Sort, Quick Sort
+
+Each item links to its corresponding visualization page.
+
+---
+
+## 🦯 Routing Rules
+
+- Use **React Router** for navigation between pages.
+- Routes follow the structure:
+
+```
+/
+├── /graph/floyd-warshall
+├── /graph/dijkstra
+├── /dp/knapsack
+├── /sorting/merge-sort
+```
+
+- Each algorithm page is a separate React component under `/src/algorithms/<category>/<algorithmName>Page.tsx`.
+
+---
+
+## 🧩 Algorithm Page Layout
+
+Each algorithm visualization page follows this **consistent structure**:
+
+### 1. Header
+
+- Algorithm name (e.g. “Floyd–Warshall Algorithm”)
+- A “🏠 Home” button that routes to `/`
+
+### 2. Controls
+
+- Inputs specific to the algorithm (e.g. matrix size, list length, etc.)
+- Buttons for iteration control:
+
+  - ⏮ Previous
+  - ▶ Next
+  - ⏭ Skip to End
+
+- Explanation text for the current step
+  Example: “Step k = 1 (A allowed as intermediate)”
+
+### 3. Mathematical Explanation
+
+Displays key formulas and text explanations for the current step.
+
+Example (Floyd–Warshall):
+
+```
+dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
+Step k = 1 (A): We allow vertex A as an intermediate vertex.
+```
+
+### 4. Input Section
+
+Shows how to define input (e.g. adjacency matrix, array).
+Include clear instructions for the user:
+
+> “Enter edge weights. Leave blank or use ∞ for no edge.”
+
+### 5. Visualization
+
+- Always show a **visual representation** of the algorithm’s current state.
+- For graph algorithms → use `react-force-graph-2d`
+- For arrays or matrices → use tables or custom SVGs
+- Highlight updated or active elements during each step
+- Provide hover tooltips with detailed calculations
+
+### 6. Code Preview
+
+Show a **Python snippet** of the algorithm at the bottom of the page.
+
+Example:
+
+```python
+for k in range(n):
+    for i in range(n):
+        for j in range(n):
+            dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
+```
+
+### 7. Footer
+
+Every page must end with:
+
+> **Made by Mihnea Popescu**
+> Open source on [GitHub](https://github.com/mihnea-popescu/algorithms-visualizer)
+
+---
+
+## ⚙️ Technical Guidelines
+
+- Always import and use **React Router** for navigation.
+- Add a new route for every new algorithm page.
+- Update `public/sitemap.xml` whenever a new page is added.
+- Graph visualizations must use **react-force-graph-2d**.
+- Follow consistent naming:
+
+  - Algorithm folders: lowercase, hyphenated (`floyd-warshall`)
+  - Category folders: lowercase (`graph`, `sorting`, `dp`)
+
+- All algorithm steps should include explanations of updates.
+
+---
+
+## 🖾 Example Folder Structure
+
+```
+src/
+├── algorithms/
+│   ├── graph/
+│   │   ├── floyd-warshall/
+│   │   │   ├── FloydWarshallPage.tsx
+│   │   │   ├── FloydAlgorithm.ts
+│   │   │   ├── MatrixInput.tsx
+│   │   │   └── GraphView.tsx
+│   │   └── dijkstra/
+│   │       ├── DijkstraPage.tsx
+│   │       └── DijkstraAlgorithm.ts
+│   └── sorting/
+│       ├── merge-sort/
+│       │   ├── MergeSortPage.tsx
+│       │   └── MergeSortAlgorithm.ts
+│       └── quick-sort/
+│           ├── QuickSortPage.tsx
+│           └── QuickSortAlgorithm.ts
+├── components/
+│   ├── HomePage.tsx
+│   ├── Navbar.tsx
+│   ├── Footer.tsx
+│   └── CategoryList.tsx
+└── App.tsx
+```
+
+---
+
+## 🧠 Example Page Flow (Floyd–Warshall)
+
+1. User sets matrix size
+2. Inputs edge weights
+3. Presses “Start”
+4. App runs step-by-step updates for each k
+5. Updated cells highlighted and formulas displayed
+6. Hovering over cells shows calculations
+7. Final results and code snippet displayed
+
+---
+
+## 🛠️ Sitemap Update Example
+
+When adding `/graph/dijkstra`, append this to `public/sitemap.xml`:
+
+```xml
+<url>
+  <loc>https://mihnea-popescu.github.io/algorithms-visualizer/graph/dijkstra</loc>
+</url>
+```
+
+---
+
+## 📜 Always Remember
+
+- Every page must end with the footer credit.
+- The project is open-source.
+- Visual clarity and interactivity > performance.
+- Explain _why_ each algorithm step happens, not just what it does.

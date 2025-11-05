@@ -1,99 +1,100 @@
-# Floyd-Warshall Algorithm Visualizer
+## 🧠 Algorithms Visualizer
 
-An interactive web application for visualizing the Floyd-Warshall algorithm, a dynamic programming algorithm for finding shortest paths in a weighted graph. Built with React and TypeScript.
+An interactive web application for exploring and visualizing algorithms across multiple categories — with real-time visual feedback, mathematical explanations, and code previews.
 
-**🌐 Live Demo**: [https://mihnea-popescu.github.io/algorithms-visualizer/](https://mihnea-popescu.github.io/algorithms-visualizer/)
+**🌐 Live Demo:** [https://mihnea-popescu.github.io/algorithms-visualizer/](https://mihnea-popescu.github.io/algorithms-visualizer/)
 
-## Features
+---
 
-- **Interactive Matrix Input**: Create and edit adjacency matrices with customizable graph sizes (1-12 vertices)
-- **Step-by-Step Visualization**: Watch the Floyd-Warshall algorithm execute step by step with detailed explanations
-- **Graph Visualization**: Interactive force-directed graph representation with directional edges (arrows show direction)
-- **Real-time Updates**: See which cells are updated at each step with hover tooltips showing calculation details
-- **Educational Content**: Built-in explanations of the Floyd-Warshall formula and algorithm steps
+## 🧩 Overview
 
-## Algorithm Overview
+This project helps users **learn algorithms visually** — step by step, with interactive inputs, graph visualizations, and detailed explanations.
+Each algorithm has its own page with:
 
-The Floyd-Warshall algorithm finds the shortest paths between all pairs of vertices in a weighted graph. It uses the dynamic programming approach with the recurrence relation:
+- Interactive controls
+- Mathematical explanations
+- Step-by-step iteration visualization
+- Real-time updates
+- Python code previews
+
+Built with **React**, **TypeScript**, **React Router**, and **react-force-graph-2d**.
+
+---
+
+## 🏠 Homepage
+
+The homepage lists all major **algorithm categories**:
+
+1. Graph Theory
+2. Dynamic Programming
+3. Greedy
+4. Sorting
+
+Each category links to its algorithms and well-known problems such as:
+
+- Floyd–Warshall
+- Dijkstra
+- Traveling Salesman
+- Knapsack
+- Merge Sort
+
+---
+
+## 🦯 Navigation & Sitemap
+
+- Uses **React Router** for routing.
+- Every new algorithm page must also be added to **`public/sitemap.xml`** for SEO.
+
+---
+
+## 🧮 Example Algorithm Page Layout
+
+Each algorithm visualization page includes:
+
+1. **Header** — algorithm name and "Home" button
+2. **Controls** — algorithm-specific inputs and iteration navigation
+3. **Formula + Explanation** — current step’s math and logic
+4. **Input Section** — user input area (matrix, array, etc.)
+5. **Visualization** — visual representation using react-force-graph-2d or tables
+6. **Python Code Preview** — short snippet of the algorithm
+7. **Footer** — credit and GitHub link
+
+---
+
+### Example: Floyd–Warshall
+
+#### Formula
 
 ```
 dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
 ```
 
-Where `k` represents the intermediate vertex being considered at each step.
+#### Explanation
 
-## How to Use
+Step k = 1 (A allowed as intermediate).
+For each pair (i, j), check if going through vertex A yields a shorter path.
+If so, update dist[i][j].
 
-1. **Set Graph Size**: Use the size input to specify the number of vertices (n×n matrix)
-2. **Input Edge Weights**:
-   - Enter numeric values for edge weights (directed edges)
-   - Leave blank or use "∞" for no edge between vertices
-   - Diagonal elements are automatically set to 0
-   - Note: matrix[i][j] represents the weight of edge from vertex i to vertex j
-3. **Compute**: Click the "Compute" button to run the Floyd-Warshall algorithm
-4. **Navigate Steps**: Use the navigation controls to step through the algorithm:
-   - ⏮ First step
-   - ◀ Previous step
-   - ▶ Next step
-   - ⏭ Last step
-   - Slider for quick navigation
-5. **Explore Results**:
-   - Hover over highlighted cells to see calculation details
-   - View the interactive graph visualization
-   - Understand the algorithm progression through the formula explanations
+#### Visualization
 
-## Technical Details
+Displays:
 
-- **Frontend**: React 19 with TypeScript
-- **Visualization**: react-force-graph-2d for interactive graph rendering
-- **Algorithm**: Custom implementation of Floyd-Warshall with step-by-step tracking
-- **Styling**: Custom CSS with responsive design
+- Graph (using `react-force-graph-2d`)
+- Distance matrix with highlighted updates
+- Hoverable tooltips showing calculation details
 
-## Project Structure
+---
 
-```
-src/
-├── algorithms/
-│   └── floyd/
-│       ├── floydAlgorithm.ts      # Core algorithm implementation
-│       └── FloydMatrixTable.tsx   # Matrix display component
-├── components/
-│   └── GraphVisualization.tsx     # Interactive graph component
-├── App.tsx                        # Main application component
-└── styles.css                     # Application styles
-```
+## ⚙️ Tech Stack
 
-## Available Scripts
+- **Frontend:** React 19 + TypeScript
+- **Routing:** React Router
+- **Visualization:** react-force-graph-2d
+- **Styling:** Tailwind CSS / custom CSS
+- **Deployment:** GitHub Pages
+- **Sitemap:** Static `public/sitemap.xml`
 
-### `yarn start`
+## 🧠 License
 
-Runs the app in development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-## Learn More
-
-- [Floyd-Warshall Algorithm](https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm)
-- [React Documentation](https://reactjs.org/)
-- [Create React App Documentation](https://facebook.github.io/create-react-app/docs/getting-started)
+Open-source under the **MIT License**.
+Contributions are welcome!

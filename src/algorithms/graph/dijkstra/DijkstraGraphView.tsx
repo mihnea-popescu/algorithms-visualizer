@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import ForceGraph2D from "react-force-graph-2d";
 import { Matrix } from "../../floyd/floydAlgorithm";
-import { DijkstraStep, labelFor } from "./dijkstraAlgorithm";
+import { DijkstraStep } from "./dijkstraAlgorithm";
 
 type DijkstraGraphViewProps = {
   matrix: Matrix;

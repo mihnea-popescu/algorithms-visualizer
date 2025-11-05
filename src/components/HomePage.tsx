@@ -28,7 +28,7 @@ const categories: Category[] = [
   {
     name: "Dynamic Programming",
     algorithms: [
-      { name: "Floyd–Warshall", path: "/graph/floyd-warshall" },
+      { name: "Matrix Chain Multiplication", path: "/dp/matrix-chain-multiplication" },
       // Placeholder for future algorithms
       // { name: "Knapsack", path: "/dp/knapsack" },
       // { name: "Longest Common Subsequence", path: "/dp/lcs" },
@@ -37,6 +37,7 @@ const categories: Category[] = [
   {
     name: "Greedy",
     algorithms: [
+      { name: "Dijkstra", path: "/graph/dijkstra" },
       // Placeholder for future algorithms
     ],
   },

@@ -19,8 +19,8 @@ const categories: Category[] = [
     name: "Graph Theory",
     algorithms: [
       { name: "Floyd–Warshall", path: "/graph/floyd-warshall" },
+      { name: "Dijkstra", path: "/graph/dijkstra" },
       // Placeholder for future algorithms
-      // { name: "Dijkstra", path: "/graph/dijkstra" },
       // { name: "Bellman-Ford", path: "/graph/bellman-ford" },
       // { name: "Traveling Salesman", path: "/graph/traveling-salesman" },
     ],

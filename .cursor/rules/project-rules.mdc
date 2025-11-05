@@ -68,6 +68,7 @@ Each algorithm visualization page follows this **consistent structure**:
 
 ### 2. Controls
 
+- When scrolling below sticks to the top of the user's window.
 - Inputs specific to the algorithm (e.g. matrix size, list length, etc.)
 - Buttons for iteration control:
 
@@ -78,7 +79,14 @@ Each algorithm visualization page follows this **consistent structure**:
 - Explanation text for the current step
   Example: “Step k = 1 (A allowed as intermediate)”
 
-### 3. Mathematical Explanation
+### 3. Input Section
+
+Shows how to define input (e.g. adjacency matrix, array).
+Include clear instructions for the user:
+
+> “Enter edge weights. Leave blank or use ∞ for no edge.”
+
+### 4. Mathematical Explanation
 
 Displays key formulas and text explanations for the current step.
 Specify the O(n) time and space complexity (average case and worst case if they're different).
@@ -89,13 +97,6 @@ Example (Floyd–Warshall):
 dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
 Step k = 1 (A): We allow vertex A as an intermediate vertex.
 ```
-
-### 4. Input Section
-
-Shows how to define input (e.g. adjacency matrix, array).
-Include clear instructions for the user:
-
-> “Enter edge weights. Leave blank or use ∞ for no edge.”
 
 ### 5. Visualization
 

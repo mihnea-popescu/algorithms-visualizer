@@ -28,6 +28,7 @@ const categories: Category[] = [
   {
     name: "Dynamic Programming",
     algorithms: [
+      { name: "Floyd–Warshall", path: "/graph/floyd-warshall" },
       { name: "Matrix Chain Multiplication", path: "/dp/matrix-chain-multiplication" },
       // Placeholder for future algorithms
       // { name: "Knapsack", path: "/dp/knapsack" },

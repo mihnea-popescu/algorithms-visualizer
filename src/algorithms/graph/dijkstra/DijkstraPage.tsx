@@ -105,7 +105,15 @@ export default function DijkstraPage() {
         </header>
 
         {/* Controls */}
-        <section className="controls">
+        <section
+          className="controls"
+          style={{
+            position: "sticky",
+            top: 0,
+            zIndex: 100,
+            backgroundColor: "var(--panel)",
+          }}
+        >
           <div className="row">
             <label>
               Size (n×n):&nbsp;

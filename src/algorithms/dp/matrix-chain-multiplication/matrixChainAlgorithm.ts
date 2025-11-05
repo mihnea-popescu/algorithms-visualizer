@@ -75,7 +75,7 @@ export function matrixChainSteps(dimensions: number[]): Step[] {
           explanation: explanationIntermediate,
           matrix: m.map((row) => row.slice()),
           split: split.map((row) => row.slice()),
-          updates: new Set([...updates]),
+          updates: new Set(Array.from(updates)),
           dimensions: [...dimensions],
           currentK: k,
           currentCost: cost,

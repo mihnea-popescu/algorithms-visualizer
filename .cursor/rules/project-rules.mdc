@@ -16,6 +16,7 @@ Your task is to help build and extend this app by generating consistent React pa
 - Built with **React** and **TypeScript**.
 - Uses **React Router** for page navigation.
 - When a new algorithm page is added, it must also be added to the static `public/sitemap.xml`.
+- When you create a new page, make sure to add the SEO tags, such as og:title and everything
 
 ---
 

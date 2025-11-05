@@ -32,7 +32,8 @@ body {
 }
 
 .app > h1,
-.app > section {
+.app > section,
+.app > header {
   max-width: 960px;
   margin: 0 auto;
   padding: 0 16px;

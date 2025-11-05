@@ -200,6 +200,16 @@ export default function FloydWarshallPage() {
                   <strong>Updates in this step:</strong>{" "}
                   {currentStep.updates.size} cells were improved.
                 </p>
+                <p>
+                  <strong>Time Complexity:</strong> O(n³) - We iterate through
+                  all pairs of vertices (i, j) for each intermediate vertex k,
+                  resulting in three nested loops over n vertices.
+                </p>
+                <p>
+                  <strong>Space Complexity:</strong> O(n²) - We store an n×n
+                  distance matrix to keep track of shortest paths between all
+                  pairs of vertices.
+                </p>
               </div>
             </div>
           </section>

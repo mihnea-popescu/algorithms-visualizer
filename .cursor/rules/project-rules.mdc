@@ -81,6 +81,7 @@ Each algorithm visualization page follows this **consistent structure**:
 ### 3. Mathematical Explanation
 
 Displays key formulas and text explanations for the current step.
+Specify the O(n) time and space complexity (average case and worst case if they're different).
 
 Example (Floyd–Warshall):
 

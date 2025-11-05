@@ -9,12 +9,15 @@ import MatrixChainPage from "./algorithms/dp/matrix-chain-multiplication/MatrixC
 export default function App() {
   return (
     <HelmetProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/graph/floyd-warshall" element={<FloydWarshallPage />} />
           <Route path="/graph/dijkstra" element={<DijkstraPage />} />
-          <Route path="/dp/matrix-chain-multiplication" element={<MatrixChainPage />} />
+          <Route
+            path="/dp/matrix-chain-multiplication"
+            element={<MatrixChainPage />}
+          />
         </Routes>
       </BrowserRouter>
     </HelmetProvider>

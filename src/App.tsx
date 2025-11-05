@@ -9,7 +9,11 @@ import MatrixChainPage from "./algorithms/dp/matrix-chain-multiplication/MatrixC
 export default function App() {
   return (
     <HelmetProvider>
-      <BrowserRouter basename="/">
+      <BrowserRouter
+        basename={
+          process.env.NODE_ENV === "production" ? "/algorithms-visualizer" : "/"
+        }
+      >
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/graph/floyd-warshall" element={<FloydWarshallPage />} />

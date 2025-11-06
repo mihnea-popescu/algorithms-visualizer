@@ -5,6 +5,7 @@ import HomePage from "./components/HomePage";
 import FloydWarshallPage from "./algorithms/graph/floyd-warshall/FloydWarshallPage";
 import DijkstraPage from "./algorithms/graph/dijkstra/DijkstraPage";
 import MatrixChainPage from "./algorithms/dp/matrix-chain-multiplication/MatrixChainPage";
+import OptimalStoragePage from "./algorithms/greedy/optimal-storage-on-tapes/OptimalStoragePage";
 
 export default function App() {
   return (
@@ -21,6 +22,10 @@ export default function App() {
           <Route
             path="/dp/matrix-chain-multiplication"
             element={<MatrixChainPage />}
+          />
+          <Route
+            path="/greedy/optimal-storage-on-tapes"
+            element={<OptimalStoragePage />}
           />
         </Routes>
       </BrowserRouter>

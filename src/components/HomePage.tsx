@@ -47,6 +47,7 @@ const categories: Category[] = [
         path: "/greedy/optimal-storage-on-tapes",
       },
       { name: "Fractional Knapsack", path: "/greedy/knapsack" },
+      { name: "Job Sequencing with Deadlines", path: "/greedy/job-sequencing" },
       // Placeholder for future algorithms
     ],
   },

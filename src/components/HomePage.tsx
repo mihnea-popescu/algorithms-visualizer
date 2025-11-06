@@ -47,9 +47,8 @@ const categories: Category[] = [
   {
     name: "Sorting",
     algorithms: [
-      // Placeholder for future algorithms
-      // { name: "Merge Sort", path: "/sorting/merge-sort" },
-      // { name: "Quick Sort", path: "/sorting/quick-sort" },
+      { name: "Merge Sort", path: "/sorting/merge-sort" },
+      { name: "Quick Sort", path: "/sorting/quick-sort" },
     ],
   },
 ];

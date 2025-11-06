@@ -7,6 +7,8 @@ import DijkstraPage from "./algorithms/graph/dijkstra/DijkstraPage";
 import MatrixChainPage from "./algorithms/dp/matrix-chain-multiplication/MatrixChainPage";
 import OptimalStoragePage from "./algorithms/greedy/optimal-storage-on-tapes/OptimalStoragePage";
 import KnapsackPage from "./algorithms/greedy/knapsack/KnapsackPage";
+import MergeSortPage from "./algorithms/sorting/merge-sort/MergeSortPage";
+import QuickSortPage from "./algorithms/sorting/quick-sort/QuickSortPage";
 
 export default function App() {
   return (
@@ -31,6 +33,14 @@ export default function App() {
           <Route
             path="/greedy/knapsack"
             element={<KnapsackPage />}
+          />
+          <Route
+            path="/sorting/merge-sort"
+            element={<MergeSortPage />}
+          />
+          <Route
+            path="/sorting/quick-sort"
+            element={<QuickSortPage />}
           />
         </Routes>
       </BrowserRouter>

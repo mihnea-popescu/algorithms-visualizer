@@ -9,6 +9,8 @@ import OptimalStoragePage from "./algorithms/greedy/optimal-storage-on-tapes/Opt
 import KnapsackPage from "./algorithms/greedy/knapsack/KnapsackPage";
 import MergeSortPage from "./algorithms/sorting/merge-sort/MergeSortPage";
 import QuickSortPage from "./algorithms/sorting/quick-sort/QuickSortPage";
+import QuickSelectPage from "./algorithms/sorting/quick-select/QuickSelectPage";
+import MedianOfMediansPage from "./algorithms/sorting/median-of-medians/MedianOfMediansPage";
 
 export default function App() {
   return (
@@ -30,17 +32,13 @@ export default function App() {
             path="/greedy/optimal-storage-on-tapes"
             element={<OptimalStoragePage />}
           />
+          <Route path="/greedy/knapsack" element={<KnapsackPage />} />
+          <Route path="/sorting/merge-sort" element={<MergeSortPage />} />
+          <Route path="/sorting/quick-sort" element={<QuickSortPage />} />
+          <Route path="/sorting/quick-select" element={<QuickSelectPage />} />
           <Route
-            path="/greedy/knapsack"
-            element={<KnapsackPage />}
-          />
-          <Route
-            path="/sorting/merge-sort"
-            element={<MergeSortPage />}
-          />
-          <Route
-            path="/sorting/quick-sort"
-            element={<QuickSortPage />}
+            path="/sorting/median-of-medians"
+            element={<MedianOfMediansPage />}
           />
         </Routes>
       </BrowserRouter>

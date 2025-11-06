@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { mergeSortSteps, MergeSortStep } from "./mergeSortAlgorithm";
+import { quickSelectSteps, QuickSelectStep } from "./quickSelectAlgorithm";
 import Footer from "../../../components/Footer";
 import SEO from "../../../components/SEO";
 import "../../../styles.css";
 
 const DEFAULT_ARRAY = [38, 27, 43, 3, 9, 82, 10];
+const DEFAULT_K = 4;
 
-export default function MergeSortPage() {
+export default function QuickSelectPage() {
   const [array, setArray] = useState<number[]>(DEFAULT_ARRAY);
-  const [steps, setSteps] = useState<MergeSortStep[] | null>(null);
+  const [k, setK] = useState<number>(DEFAULT_K);
+  const [steps, setSteps] = useState<QuickSelectStep[] | null>(null);
   const [stepIndex, setStepIndex] = useState<number>(0);
 
-  // Reset steps when array changes
+  // Reset steps when array or k changes
   useEffect(() => {
     setSteps(null);
     setStepIndex(0);
-  }, [array]);
+  }, [array, k]);
 
   function addElement() {
     setArray([...array, 1]);
@@ -50,7 +52,11 @@ export default function MergeSortPage() {
       alert("Please enter at least 1 element");
       return;
     }
-    const result = mergeSortSteps(array);
+    if (k < 1 || k > array.length) {
+      alert(`k must be between 1 and ${array.length}`);
+      return;
+    }
+    const result = quickSelectSteps(array, k);
     setSteps(result);
     setStepIndex(0);
   }
@@ -60,9 +66,9 @@ export default function MergeSortPage() {
   return (
     <>
       <SEO
-        title="Merge Sort"
-        description="Interactive visualization of the Merge Sort algorithm. Learn how divide-and-conquer works with step-by-step visualization of array splitting and merging. Understand the O(n log n) time complexity."
-        keywords="merge sort, sorting algorithm, divide and conquer, algorithm visualization, recursive sorting, O(n log n)"
+        title="Quick Select"
+        description="Interactive visualization of the Quick Select algorithm. Learn how to find the k-th smallest element efficiently using partition-based selection. Understand the O(n) average case time complexity."
+        keywords="quick select, selection algorithm, k-th smallest, algorithm visualization, partition, O(n), selection problem"
         ogType="article"
       />
       <div className="app">
@@ -82,7 +88,7 @@ export default function MergeSortPage() {
                 🏠 Home
               </button>
             </Link>
-            <h1 style={{ margin: 0 }}>Merge Sort Algorithm</h1>
+            <h1 style={{ margin: 0 }}>Quick Select Algorithm</h1>
           </header>
 
           {/* Controls */}
@@ -98,7 +104,7 @@ export default function MergeSortPage() {
           >
             <div className="row">
               <button onClick={compute} className="primary">
-                Start Sorting
+                Find k-th Smallest
               </button>
               {steps && (
                 <>
@@ -170,9 +176,10 @@ export default function MergeSortPage() {
           <section>
             <h2>Input</h2>
             <p>
-              Enter the array elements to sort. Merge sort uses
-              divide-and-conquer: it divides the array into halves, recursively
-              sorts each half, then merges them back together.
+              Enter the array elements and the value of k (1-indexed). Quick
+              select finds the k-th smallest element in the array using a
+              partition-based approach similar to quick sort, but only recurses
+              on the partition containing the k-th element.
             </p>
             <div
               style={{
@@ -182,6 +189,43 @@ export default function MergeSortPage() {
                 marginTop: "1rem",
               }}
             >
+              <div
+                style={{
+                  padding: "1rem",
+                  backgroundColor: "#0f1722",
+                  border: "1px solid #213040",
+                  borderRadius: "8px",
+                }}
+              >
+                <label
+                  style={{
+                    display: "block",
+                    marginBottom: "0.5rem",
+                    fontWeight: "600",
+                  }}
+                >
+                  k (k-th smallest element, 1-indexed):
+                </label>
+                <input
+                  type="number"
+                  min={1}
+                  max={array.length}
+                  value={k}
+                  onChange={(e) => setK(parseInt(e.target.value, 10) || 1)}
+                  style={{
+                    padding: "0.5rem",
+                    width: "100px",
+                    backgroundColor: "#1a2332",
+                    border: "1px solid #213040",
+                    borderRadius: "4px",
+                    color: "#e7edf5",
+                  }}
+                />
+                <span style={{ marginLeft: "1rem", color: "#9ca3af" }}>
+                  (must be between 1 and {array.length})
+                </span>
+              </div>
+
               <div
                 style={{
                   padding: "1rem",
@@ -272,8 +316,7 @@ export default function MergeSortPage() {
                 <div
                   style={{
                     display: "grid",
-                    gridTemplateColumns:
-                      "repeat(auto-fill, minmax(120px, 1fr))",
+                    gridTemplateColumns: "repeat(auto-fill, minmax(120px, 1fr))",
                     gap: "0.75rem",
                   }}
                 >
@@ -347,42 +390,56 @@ export default function MergeSortPage() {
               <div className="formula-box">
                 <div className="formula-main">
                   <code>
-                    {currentStep.phase === "divide"
-                      ? "Divide: array → left_half, right_half"
-                      : currentStep.phase === "merge"
-                      ? "Merge: merge(left_sorted, right_sorted) → sorted_array"
-                      : "Compare: left[i] ≤ right[j] ? take left[i] : take right[j]"}
+                    {currentStep.phase === "start"
+                      ? "Quick Select: find k-th smallest element"
+                      : currentStep.phase === "pivot"
+                      ? "Pivot: choose element and partition around it"
+                      : currentStep.phase === "partition"
+                      ? "Partition: left < pivot ≤ right"
+                      : currentStep.phase === "compare"
+                      ? "Compare: determine which partition contains k-th element"
+                      : currentStep.phase === "recurse"
+                      ? "Recurse: search in the partition containing k-th element"
+                      : currentStep.phase === "found"
+                      ? "Found: k-th smallest element found"
+                      : "Swap: place element in correct partition"}
                   </code>
                 </div>
                 <div className="formula-explanation">
                   <p>
-                    <strong>Merge Sort Algorithm:</strong>
+                    <strong>Quick Select Algorithm:</strong>
                   </p>
                   <ul style={{ marginLeft: "1.5rem", lineHeight: "1.8" }}>
                     <li>
-                      <strong>Divide:</strong> Split the array into two halves
-                      recursively until each subarray has one element
+                      <strong>Partition:</strong> Choose a pivot and partition
+                      the array around it (elements smaller than pivot on the
+                      left, greater or equal on the right)
                     </li>
                     <li>
-                      <strong>Conquer:</strong> A single element is already
-                      sorted (base case)
+                      <strong>Rank Check:</strong> Calculate the rank of the
+                      pivot (its position in sorted order)
                     </li>
                     <li>
-                      <strong>Merge:</strong> Combine two sorted halves by
-                      comparing elements and placing them in order
+                      <strong>Recurse:</strong> If pivot rank equals k, we found
+                      the answer. Otherwise, recurse on the partition containing
+                      the k-th element
                     </li>
                     <li>
-                      <strong>Recurrence Relation:</strong> T(n) = 2T(n/2) +
-                      O(n)
+                      <strong>Key Insight:</strong> Unlike quick sort, we only
+                      recurse on one partition, not both
                     </li>
                   </ul>
                   <p>
-                    <strong>Time Complexity:</strong> O(n log n) - The array is
-                    divided log n times, and each merge takes O(n) time.
+                    <strong>Time Complexity:</strong> O(n) average case, O(n²)
+                    worst case - The average case occurs when the pivot divides
+                    the array roughly in half. The worst case occurs when the
+                    pivot is always the smallest or largest element, creating
+                    unbalanced partitions. However, with median-of-medians pivot
+                    selection, worst case becomes O(n).
                   </p>
                   <p>
-                    <strong>Space Complexity:</strong> O(n) - Additional space
-                    is needed for the temporary arrays during merging.
+                    <strong>Space Complexity:</strong> O(log n) average case,
+                    O(n) worst case - Space is used for the recursion stack.
                   </p>
                   {currentStep.range && (
                     <div
@@ -404,6 +461,28 @@ export default function MergeSortPage() {
                       {currentStep.depth !== undefined && (
                         <p>Recursion Depth: {currentStep.depth}</p>
                       )}
+                      {currentStep.k !== undefined && (
+                        <p>Looking for: {currentStep.k}-th smallest</p>
+                      )}
+                      {currentStep.pivotValue !== undefined && (
+                        <p>Pivot Value: {currentStep.pivotValue}</p>
+                      )}
+                    </div>
+                  )}
+                  {currentStep.result !== undefined && (
+                    <div
+                      style={{
+                        marginTop: "1rem",
+                        padding: "0.75rem",
+                        backgroundColor: "#22c55e",
+                        borderRadius: "4px",
+                        border: "2px solid #4ade80",
+                      }}
+                    >
+                      <p style={{ margin: 0, fontWeight: "600", color: "#fff" }}>
+                        Result: The {currentStep.k}-th smallest element is{" "}
+                        {currentStep.result}
+                      </p>
                     </div>
                   )}
                 </div>
@@ -417,14 +496,14 @@ export default function MergeSortPage() {
               Visualization{" "}
               {steps
                 ? `(Step ${stepIndex + 1}/${steps.length})`
-                : "(press Start Sorting)"}
+                : "(press Find k-th Smallest)"}
             </h2>
             {currentStep ? (
-              <MergeSortVisualization step={currentStep} />
+              <QuickSelectVisualization step={currentStep} />
             ) : (
               <p>
-                Enter array elements and click "Start Sorting" to begin
-                visualization.
+                Enter array elements, set k, and click "Find k-th Smallest" to
+                begin visualization.
               </p>
             )}
           </section>
@@ -449,47 +528,63 @@ export default function MergeSortPage() {
                   color: "#60a5fa",
                   lineHeight: "1.6",
                 }}
-              >{`def merge_sort(arr):
+              >{`def quick_select(arr, k):
     """
-    Merge sort algorithm using divide-and-conquer.
-    Time Complexity: O(n log n)
-    Space Complexity: O(n)
+    Find the k-th smallest element in an array (1-indexed).
+    Time Complexity: O(n) average, O(n²) worst case
+    Space Complexity: O(log n) average, O(n) worst case
     """
-    if len(arr) <= 1:
-        return arr
+    if k < 1 or k > len(arr):
+        raise ValueError("k must be between 1 and len(arr)")
     
-    # Divide: split array into two halves
-    mid = len(arr) // 2
-    left = merge_sort(arr[:mid])
-    right = merge_sort(arr[mid:])
-    
-    # Merge: combine two sorted halves
-    return merge(left, right)
+    return _quick_select(arr, 0, len(arr) - 1, k)
 
-def merge(left, right):
-    """Merge two sorted arrays into one sorted array."""
-    merged = []
-    i, j = 0, 0
+def _quick_select(arr, start, end, k):
+    """Helper function for quick select."""
+    if start == end:
+        return arr[start]
     
-    # Compare elements from both arrays
-    while i < len(left) and j < len(right):
-        if left[i] <= right[j]:
-            merged.append(left[i])
+    # Choose pivot (using last element)
+    pivot_index = partition(arr, start, end)
+    
+    # Calculate rank of pivot (1-indexed)
+    pivot_rank = pivot_index - start + 1
+    
+    if pivot_rank == k:
+        return arr[pivot_index]
+    elif k < pivot_rank:
+        # k-th element is in left partition
+        return _quick_select(arr, start, pivot_index - 1, k)
+    else:
+        # k-th element is in right partition
+        return _quick_select(arr, pivot_index + 1, end, k - pivot_rank)
+
+def partition(arr, start, end):
+    """
+    Partitions the array around a pivot element.
+    Returns the final position of the pivot.
+    """
+    # Choose last element as pivot
+    pivot = arr[end]
+    i = start  # Index of smaller element
+    
+    # Traverse through all elements
+    for j in range(start, end):
+        # If current element is smaller than pivot
+        if arr[j] < pivot:
+            # Swap with element at i
+            arr[i], arr[j] = arr[j], arr[i]
             i += 1
-        else:
-            merged.append(right[j])
-            j += 1
     
-    # Add remaining elements
-    merged.extend(left[i:])
-    merged.extend(right[j:])
-    
-    return merged
+    # Place pivot at its final position
+    arr[i], arr[end] = arr[end], arr[i]
+    return i
 
 # Example usage
 arr = [38, 27, 43, 3, 9, 82, 10]
-sorted_arr = merge_sort(arr)
-print(f"Sorted array: {sorted_arr}`}</code>
+k = 4
+result = quick_select(arr, k)
+print(f"The {k}-th smallest element is: {result}`}</code>
             </pre>
           </section>
         </div>
@@ -500,11 +595,13 @@ print(f"Sorted array: {sorted_arr}`}</code>
   );
 }
 
-type MergeSortVisualizationProps = {
-  step: MergeSortStep;
+type QuickSelectVisualizationProps = {
+  step: QuickSelectStep;
 };
 
-function MergeSortVisualization({ step }: MergeSortVisualizationProps) {
+function QuickSelectVisualization({
+  step,
+}: QuickSelectVisualizationProps) {
   return (
     <div
       style={{
@@ -516,7 +613,7 @@ function MergeSortVisualization({ step }: MergeSortVisualizationProps) {
     >
       {/* Main Array */}
       <div style={{ marginBottom: "2rem" }}>
-        <h3 style={{ marginBottom: "1rem", color: "#e7edf5" }}>Main Array</h3>
+        <h3 style={{ marginBottom: "1rem", color: "#e7edf5" }}>Array</h3>
         <div
           style={{
             display: "flex",
@@ -527,140 +624,128 @@ function MergeSortVisualization({ step }: MergeSortVisualizationProps) {
           }}
         >
           {step.array.map((value, index) => {
+            const isPivot = step.pivotIndex === index;
             const isInRange =
               step.range &&
               index >= step.range.start &&
               index <= step.range.end;
+            const isLeftIndex = step.leftIndex === index;
+            const isRightIndex = step.rightIndex === index;
+            const isSwapped =
+              step.swapped &&
+              (index === step.swapped.i || index === step.swapped.j);
+            const isResult =
+              step.phase === "found" &&
+              step.result !== undefined &&
+              value === step.result;
+
+            let backgroundColor = "#1a2332";
+            let borderColor = "#213040";
+            let borderWidth = "1px";
+            let fontWeight = "400";
+
+            if (isResult) {
+              backgroundColor = "#22c55e";
+              borderColor = "#4ade80";
+              borderWidth = "3px";
+              fontWeight = "700";
+            } else if (isPivot) {
+              backgroundColor = "#f59e0b";
+              borderColor = "#fbbf24";
+              borderWidth = "3px";
+              fontWeight = "700";
+            } else if (isSwapped) {
+              backgroundColor = "#22c55e";
+              borderColor = "#4ade80";
+              borderWidth = "2px";
+              fontWeight = "600";
+            } else if (isLeftIndex) {
+              backgroundColor = "#3b82f6";
+              borderColor = "#60a5fa";
+              borderWidth = "2px";
+              fontWeight = "600";
+            } else if (isRightIndex) {
+              backgroundColor = "#8b5cf6";
+              borderColor = "#a78bfa";
+              borderWidth = "2px";
+              fontWeight = "600";
+            } else if (isInRange) {
+              backgroundColor = "#1e3a5f";
+              borderColor = "#3b82f6";
+              borderWidth = "1px";
+            }
+
             return (
               <div
                 key={index}
                 style={{
                   padding: "1rem 1.5rem",
-                  backgroundColor: isInRange ? "#3b82f6" : "#1a2332",
-                  border: isInRange ? "2px solid #60a5fa" : "1px solid #213040",
+                  backgroundColor,
+                  border: `${borderWidth} solid ${borderColor}`,
                   borderRadius: "8px",
                   color: "#e7edf5",
-                  fontWeight: isInRange ? "600" : "400",
+                  fontWeight,
                   minWidth: "60px",
                   textAlign: "center",
                   fontSize: "1.1rem",
+                  position: "relative",
                 }}
-                title={`Index ${index}: ${value}`}
+                title={`Index ${index}: ${value}${
+                  isPivot ? " (Pivot)" : ""
+                }${isLeftIndex ? " (Left pointer)" : ""}${
+                  isRightIndex ? " (Right pointer)" : ""
+                }${isResult ? " (Result)" : ""}`}
               >
                 {value}
+                {isPivot && (
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "-8px",
+                      right: "-8px",
+                      backgroundColor: "#f59e0b",
+                      color: "#fff",
+                      borderRadius: "50%",
+                      width: "20px",
+                      height: "20px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "0.7rem",
+                      fontWeight: "700",
+                    }}
+                  >
+                    P
+                  </div>
+                )}
+                {isResult && (
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "-8px",
+                      left: "-8px",
+                      backgroundColor: "#22c55e",
+                      color: "#fff",
+                      borderRadius: "50%",
+                      width: "24px",
+                      height: "24px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "0.7rem",
+                      fontWeight: "700",
+                    }}
+                  >
+                    ✓
+                  </div>
+                )}
               </div>
             );
           })}
         </div>
       </div>
 
-      {/* Left and Right Arrays (during merge) */}
-      {(step.leftArray || step.rightArray) && (
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "1rem",
-            marginBottom: "2rem",
-          }}
-        >
-          {step.leftArray && (
-            <div>
-              <h3 style={{ marginBottom: "1rem", color: "#e7edf5" }}>
-                Left Array
-                {step.leftIndex !== undefined && (
-                  <span style={{ color: "#60a5fa", marginLeft: "0.5rem" }}>
-                    (index: {step.leftIndex})
-                  </span>
-                )}
-              </h3>
-              <div
-                style={{
-                  display: "flex",
-                  flexWrap: "wrap",
-                  gap: "0.5rem",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                {step.leftArray.map((value, index) => {
-                  const isCurrent = step.leftIndex === index;
-                  return (
-                    <div
-                      key={index}
-                      style={{
-                        padding: "1rem 1.5rem",
-                        backgroundColor: isCurrent ? "#22c55e" : "#1a2332",
-                        border: isCurrent
-                          ? "2px solid #4ade80"
-                          : "1px solid #213040",
-                        borderRadius: "8px",
-                        color: "#e7edf5",
-                        fontWeight: isCurrent ? "600" : "400",
-                        minWidth: "60px",
-                        textAlign: "center",
-                        fontSize: "1.1rem",
-                      }}
-                      title={`Index ${index}: ${value}`}
-                    >
-                      {value}
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          )}
-
-          {step.rightArray && (
-            <div>
-              <h3 style={{ marginBottom: "1rem", color: "#e7edf5" }}>
-                Right Array
-                {step.rightIndex !== undefined && (
-                  <span style={{ color: "#60a5fa", marginLeft: "0.5rem" }}>
-                    (index: {step.rightIndex})
-                  </span>
-                )}
-              </h3>
-              <div
-                style={{
-                  display: "flex",
-                  flexWrap: "wrap",
-                  gap: "0.5rem",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                {step.rightArray.map((value, index) => {
-                  const isCurrent = step.rightIndex === index;
-                  return (
-                    <div
-                      key={index}
-                      style={{
-                        padding: "1rem 1.5rem",
-                        backgroundColor: isCurrent ? "#f59e0b" : "#1a2332",
-                        border: isCurrent
-                          ? "2px solid #fbbf24"
-                          : "1px solid #213040",
-                        borderRadius: "8px",
-                        color: "#e7edf5",
-                        fontWeight: isCurrent ? "600" : "400",
-                        minWidth: "60px",
-                        textAlign: "center",
-                        fontSize: "1.1rem",
-                      }}
-                      title={`Index ${index}: ${value}`}
-                    >
-                      {value}
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* Comparison (during merge) */}
+      {/* Comparison */}
       {step.comparing && (
         <div
           style={{
@@ -684,7 +769,7 @@ function MergeSortVisualization({ step }: MergeSortVisualizationProps) {
             <div
               style={{
                 padding: "1.5rem 2rem",
-                backgroundColor: "#22c55e",
+                backgroundColor: "#3b82f6",
                 borderRadius: "8px",
                 fontSize: "1.5rem",
                 fontWeight: "600",
@@ -693,7 +778,7 @@ function MergeSortVisualization({ step }: MergeSortVisualizationProps) {
             >
               {step.comparing.left}
             </div>
-            <span style={{ fontSize: "2rem", color: "#60a5fa" }}>≤</span>
+            <span style={{ fontSize: "2rem", color: "#60a5fa" }}>&lt;</span>
             <div
               style={{
                 padding: "1.5rem 2rem",
@@ -710,43 +795,127 @@ function MergeSortVisualization({ step }: MergeSortVisualizationProps) {
         </div>
       )}
 
-      {/* Merged Array */}
-      {step.mergedArray && (
+      {/* Partitioned View */}
+      {step.partitioned && (
         <div>
           <h3 style={{ marginBottom: "1rem", color: "#e7edf5" }}>
-            Merged Array
+            Partitioned View
           </h3>
           <div
             style={{
               display: "flex",
               flexWrap: "wrap",
-              gap: "0.5rem",
+              gap: "1rem",
               alignItems: "center",
               justifyContent: "center",
             }}
           >
-            {step.mergedArray.map((value, index) => (
+            {step.partitioned.left.length > 0 && (
+              <div>
+                <h4
+                  style={{
+                    marginBottom: "0.5rem",
+                    color: "#60a5fa",
+                    fontSize: "0.9rem",
+                  }}
+                >
+                  Left Partition (&lt; {step.partitioned.pivot})
+                </h4>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "0.5rem",
+                    flexWrap: "wrap",
+                  }}
+                >
+                  {step.partitioned.left.map((value, index) => (
+                    <div
+                      key={index}
+                      style={{
+                        padding: "0.75rem 1.25rem",
+                        backgroundColor: "#3b82f6",
+                        border: "2px solid #60a5fa",
+                        borderRadius: "6px",
+                        color: "#fff",
+                        fontWeight: "600",
+                        minWidth: "50px",
+                        textAlign: "center",
+                      }}
+                    >
+                      {value}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            <div>
+              <h4
+                style={{
+                  marginBottom: "0.5rem",
+                  color: "#f59e0b",
+                  fontSize: "0.9rem",
+                }}
+              >
+                Pivot
+              </h4>
               <div
-                key={index}
                 style={{
                   padding: "1rem 1.5rem",
-                  backgroundColor: "#3b82f6",
-                  border: "2px solid #60a5fa",
+                  backgroundColor: "#f59e0b",
+                  border: "3px solid #fbbf24",
                   borderRadius: "8px",
-                  color: "#e7edf5",
-                  fontWeight: "600",
+                  color: "#fff",
+                  fontWeight: "700",
+                  fontSize: "1.2rem",
                   minWidth: "60px",
                   textAlign: "center",
-                  fontSize: "1.1rem",
                 }}
-                title={`Position ${index}: ${value}`}
               >
-                {value}
+                {step.partitioned.pivot}
               </div>
-            ))}
+            </div>
+            {step.partitioned.right.length > 0 && (
+              <div>
+                <h4
+                  style={{
+                    marginBottom: "0.5rem",
+                    color: "#8b5cf6",
+                    fontSize: "0.9rem",
+                  }}
+                >
+                  Right Partition (≥ {step.partitioned.pivot})
+                </h4>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "0.5rem",
+                    flexWrap: "wrap",
+                  }}
+                >
+                  {step.partitioned.right.map((value, index) => (
+                    <div
+                      key={index}
+                      style={{
+                        padding: "0.75rem 1.25rem",
+                        backgroundColor: "#8b5cf6",
+                        border: "2px solid #a78bfa",
+                        borderRadius: "6px",
+                        color: "#fff",
+                        fontWeight: "600",
+                        minWidth: "50px",
+                        textAlign: "center",
+                      }}
+                    >
+                      {value}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}
     </div>
   );
 }
+

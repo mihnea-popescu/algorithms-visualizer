@@ -24,5 +24,11 @@
   <url>
     <loc>https://mihnea-popescu.github.io/algorithms-visualizer/sorting/quick-sort</loc>
   </url>
+  <url>
+    <loc>https://mihnea-popescu.github.io/algorithms-visualizer/sorting/quick-select</loc>
+  </url>
+  <url>
+    <loc>https://mihnea-popescu.github.io/algorithms-visualizer/sorting/median-of-medians</loc>
+  </url>
 </urlset>
 

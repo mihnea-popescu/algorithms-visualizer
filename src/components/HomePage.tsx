@@ -29,7 +29,10 @@ const categories: Category[] = [
     name: "Dynamic Programming",
     algorithms: [
       { name: "Floyd–Warshall", path: "/graph/floyd-warshall" },
-      { name: "Matrix Chain Multiplication", path: "/dp/matrix-chain-multiplication" },
+      {
+        name: "Matrix Chain Multiplication",
+        path: "/dp/matrix-chain-multiplication",
+      },
       // Placeholder for future algorithms
       // { name: "Knapsack", path: "/dp/knapsack" },
       // { name: "Longest Common Subsequence", path: "/dp/lcs" },
@@ -39,7 +42,10 @@ const categories: Category[] = [
     name: "Greedy",
     algorithms: [
       { name: "Dijkstra", path: "/graph/dijkstra" },
-      { name: "Optimal Storage on Tapes", path: "/greedy/optimal-storage-on-tapes" },
+      {
+        name: "Optimal Storage on Tapes",
+        path: "/greedy/optimal-storage-on-tapes",
+      },
       { name: "Fractional Knapsack", path: "/greedy/knapsack" },
       // Placeholder for future algorithms
     ],
@@ -49,6 +55,8 @@ const categories: Category[] = [
     algorithms: [
       { name: "Merge Sort", path: "/sorting/merge-sort" },
       { name: "Quick Sort", path: "/sorting/quick-sort" },
+      { name: "Quick Select", path: "/sorting/quick-select" },
+      { name: "Median of Medians", path: "/sorting/median-of-medians" },
     ],
   },
 ];
@@ -63,119 +71,120 @@ export default function HomePage() {
       />
       <div className="app">
         <div className="container">
-        <header style={{ textAlign: "center", marginBottom: "4rem" }}>
-          <h1
-            className="animated-title"
-            style={{
-              fontSize: "3rem",
-              marginBottom: "1rem",
-              fontWeight: "700",
-              letterSpacing: "0.02em",
-            }}
-          >
-            Algorithms Visualizer
-          </h1>
-          <p
-            style={{
-              fontSize: "1.2rem",
-              color: "var(--muted)",
-              maxWidth: "600px",
-              margin: "0 auto",
-            }}
-          >
-            Interactive educational platform for visualizing algorithms step by
-            step
-          </p>
-        </header>
-
-        <main>
-          {categories.map((category) => (
-            <section
-              key={category.name}
+          <header style={{ textAlign: "center", marginBottom: "4rem" }}>
+            <h1
+              className="animated-title"
               style={{
-                marginBottom: "2.5rem",
-                padding: "2rem",
-                backgroundColor: "var(--panel)",
-                border: "1px solid var(--border)",
-                borderRadius: "12px",
-                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+                fontSize: "3rem",
+                marginBottom: "1rem",
+                fontWeight: "700",
+                letterSpacing: "0.02em",
               }}
             >
-              <h2
+              Algorithms Visualizer
+            </h1>
+            <p
+              style={{
+                fontSize: "1.2rem",
+                color: "var(--muted)",
+                maxWidth: "600px",
+                margin: "0 auto",
+              }}
+            >
+              Interactive educational platform for visualizing algorithms step
+              by step
+            </p>
+          </header>
+
+          <main>
+            {categories.map((category) => (
+              <section
+                key={category.name}
                 style={{
-                  fontSize: "1.8rem",
-                  marginBottom: "1.5rem",
-                  color: "var(--text)",
-                  fontWeight: "600",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.5rem",
+                  marginBottom: "2.5rem",
+                  padding: "2rem",
+                  backgroundColor: "var(--panel)",
+                  border: "1px solid var(--border)",
+                  borderRadius: "12px",
+                  boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
                 }}
               >
-                <span style={{ color: "var(--accent)" }}>▸</span>
-                {category.name}
-              </h2>
-              {category.algorithms.length > 0 ? (
-                <ul
+                <h2
                   style={{
-                    listStyle: "none",
-                    padding: 0,
-                    margin: 0,
-                    display: "grid",
-                    gridTemplateColumns:
-                      "repeat(auto-fill, minmax(220px, 1fr))",
-                    gap: "1rem",
+                    fontSize: "1.8rem",
+                    marginBottom: "1.5rem",
+                    color: "var(--text)",
+                    fontWeight: "600",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
                   }}
                 >
-                  {category.algorithms.map((algorithm) => (
-                    <li key={algorithm.path}>
-                      <Link
-                        to={algorithm.path}
-                        style={{
-                          display: "block",
-                          padding: "1.25rem 1.5rem",
-                          backgroundColor: "#0f1722",
-                          border: "1px solid var(--border)",
-                          borderRadius: "8px",
-                          textDecoration: "none",
-                          color: "var(--text)",
-                          transition: "all 0.2s ease",
-                          fontWeight: "500",
-                          fontSize: "1rem",
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.backgroundColor = "#1a2332";
-                          e.currentTarget.style.borderColor = "var(--accent)";
-                          e.currentTarget.style.transform = "translateY(-2px)";
-                          e.currentTarget.style.boxShadow =
-                            "0 4px 12px rgba(96, 165, 250, 0.2)";
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.backgroundColor = "#0f1722";
-                          e.currentTarget.style.borderColor = "var(--border)";
-                          e.currentTarget.style.transform = "translateY(0)";
-                          e.currentTarget.style.boxShadow = "none";
-                        }}
-                      >
-                        {algorithm.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p
-                  style={{
-                    color: "var(--muted)",
-                    fontStyle: "italic",
-                    padding: "1rem 0",
-                  }}
-                >
-                  Coming soon...
-                </p>
-              )}
-            </section>
-          ))}
-        </main>
+                  <span style={{ color: "var(--accent)" }}>▸</span>
+                  {category.name}
+                </h2>
+                {category.algorithms.length > 0 ? (
+                  <ul
+                    style={{
+                      listStyle: "none",
+                      padding: 0,
+                      margin: 0,
+                      display: "grid",
+                      gridTemplateColumns:
+                        "repeat(auto-fill, minmax(220px, 1fr))",
+                      gap: "1rem",
+                    }}
+                  >
+                    {category.algorithms.map((algorithm) => (
+                      <li key={algorithm.path}>
+                        <Link
+                          to={algorithm.path}
+                          style={{
+                            display: "block",
+                            padding: "1.25rem 1.5rem",
+                            backgroundColor: "#0f1722",
+                            border: "1px solid var(--border)",
+                            borderRadius: "8px",
+                            textDecoration: "none",
+                            color: "var(--text)",
+                            transition: "all 0.2s ease",
+                            fontWeight: "500",
+                            fontSize: "1rem",
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.backgroundColor = "#1a2332";
+                            e.currentTarget.style.borderColor = "var(--accent)";
+                            e.currentTarget.style.transform =
+                              "translateY(-2px)";
+                            e.currentTarget.style.boxShadow =
+                              "0 4px 12px rgba(96, 165, 250, 0.2)";
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.backgroundColor = "#0f1722";
+                            e.currentTarget.style.borderColor = "var(--border)";
+                            e.currentTarget.style.transform = "translateY(0)";
+                            e.currentTarget.style.boxShadow = "none";
+                          }}
+                        >
+                          {algorithm.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p
+                    style={{
+                      color: "var(--muted)",
+                      fontStyle: "italic",
+                      padding: "1rem 0",
+                    }}
+                  >
+                    Coming soon...
+                  </p>
+                )}
+              </section>
+            ))}
+          </main>
         </div>
         <Footer />
       </div>

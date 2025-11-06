@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import {
   optimalStorageSteps,
   Step,
-  Program,
-  displayNumber,
 } from "./optimalStorageAlgorithm";
 import Footer from "../../../components/Footer";
 import SEO from "../../../components/SEO";

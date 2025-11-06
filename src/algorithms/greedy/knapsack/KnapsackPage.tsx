@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import {
   knapsackSteps,
   Step,
-  Item,
 } from "./knapsackAlgorithm";
 import Footer from "../../../components/Footer";
 import SEO from "../../../components/SEO";
@@ -422,18 +421,13 @@ export default function KnapsackPage() {
                   <strong>Items Selected:</strong>
                 </p>
                 <ul style={{ marginLeft: "1.5rem", lineHeight: "1.8" }}>
-                  {currentStep.selectedItems.map((selected, idx) => {
-                    const item = currentStep.sortedItems.find(
-                      (i) => i.id === selected.itemId
-                    );
-                    return (
-                      <li key={idx}>
-                        Item {selected.itemId}: {selected.fraction < 1
-                          ? `${(selected.fraction * 100).toFixed(1)}%`
-                          : "100%"} (weight: {selected.weight.toFixed(2)}, value: {selected.value.toFixed(2)})
-                      </li>
-                    );
-                  })}
+                  {currentStep.selectedItems.map((selected, idx) => (
+                    <li key={idx}>
+                      Item {selected.itemId}: {selected.fraction < 1
+                        ? `${(selected.fraction * 100).toFixed(1)}%`
+                        : "100%"} (weight: {selected.weight.toFixed(2)}, value: {selected.value.toFixed(2)})
+                    </li>
+                  ))}
                 </ul>
               </div>
             </section>

@@ -86,6 +86,7 @@ export default function FloydWarshallPage() {
         ogType="article"
       />
       <div className="app">
+        <div className="container">
         {/* Header */}
         <header
           style={{
@@ -299,7 +300,7 @@ export default function FloydWarshallPage() {
             dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])`}</code>
           </pre>
         </section>
-
+        </div>
         {/* Footer */}
         <Footer />
       </div>

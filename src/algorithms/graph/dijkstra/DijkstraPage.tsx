@@ -86,6 +86,7 @@ export default function DijkstraPage() {
         ogType="article"
       />
       <div className="app">
+        <div className="container">
         {/* Header */}
         <header
           style={{
@@ -423,7 +424,7 @@ export default function DijkstraPage() {
     return dist[target], path`}</code>
           </pre>
         </section>
-
+        </div>
         {/* Footer */}
         <Footer />
       </div>

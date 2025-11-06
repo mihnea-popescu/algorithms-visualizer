@@ -94,6 +94,7 @@ export default function MatrixChainPage() {
         ogType="article"
       />
       <div className="app">
+        <div className="container">
         {/* Header */}
         <header
           style={{
@@ -553,7 +554,7 @@ for l in range(2, n + 1):  # chain length (number of matrices)
 # Minimum cost is m[0][n-1]`}</code>
           </pre>
         </section>
-
+        </div>
         {/* Footer */}
         <Footer />
       </div>

@@ -59,6 +59,7 @@ export default function OptimalStoragePage() {
         ogType="article"
       />
       <div className="app">
+        <div className="container">
         {/* Header */}
         <header
           style={{
@@ -409,7 +410,7 @@ print(f"Total retrieval time: {total}")
 print(f"Average retrieval time: {average:.2f}")`}</code>
           </pre>
         </section>
-
+        </div>
         {/* Footer */}
         <Footer />
       </div>

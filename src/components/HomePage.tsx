@@ -61,10 +61,8 @@ export default function HomePage() {
         description="Interactive educational platform for visualizing algorithms step by step. Explore graph theory, dynamic programming, greedy algorithms, and sorting algorithms with interactive visualizations."
         keywords="algorithms, visualization, graph theory, dynamic programming, sorting, educational, interactive learning, Floyd-Warshall, Dijkstra"
       />
-      <div
-        className="app"
-        style={{ maxWidth: "1200px", margin: "0 auto", padding: "2rem" }}
-      >
+      <div className="app">
+        <div className="container">
         <header style={{ textAlign: "center", marginBottom: "4rem" }}>
           <h1
             style={{
@@ -181,7 +179,7 @@ export default function HomePage() {
             </section>
           ))}
         </main>
-
+        </div>
         <Footer />
       </div>
     </>

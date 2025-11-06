@@ -40,6 +40,7 @@ const categories: Category[] = [
     algorithms: [
       { name: "Dijkstra", path: "/graph/dijkstra" },
       { name: "Optimal Storage on Tapes", path: "/greedy/optimal-storage-on-tapes" },
+      { name: "Fractional Knapsack", path: "/greedy/knapsack" },
       // Placeholder for future algorithms
     ],
   },

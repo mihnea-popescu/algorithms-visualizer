@@ -233,3 +233,33 @@ input[type="range"] {
   min-height: 450px;
   width: 100%;
 }
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animated-title {
+  background: linear-gradient(
+    135deg,
+    var(--accent),
+    #a78bfa,
+    #60a5fa,
+    #34d399,
+    #60a5fa,
+    #a78bfa,
+    var(--accent)
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 3s ease infinite;
+}

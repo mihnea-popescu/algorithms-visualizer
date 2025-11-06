@@ -66,15 +66,12 @@ export default function HomePage() {
         <div className="container">
         <header style={{ textAlign: "center", marginBottom: "4rem" }}>
           <h1
+            className="animated-title"
             style={{
               fontSize: "3rem",
               marginBottom: "1rem",
               fontWeight: "700",
               letterSpacing: "0.02em",
-              background: "linear-gradient(135deg, var(--accent), #a78bfa)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
             }}
           >
             Algorithms Visualizer

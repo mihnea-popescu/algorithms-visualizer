@@ -82,13 +82,17 @@ export function jobSequencingSteps(
   // Process jobs one by one
   for (let i = 0; i < sortedJobs.length; i++) {
     const currentJob = sortedJobs[i];
-    
+
     // Find the latest available time slot before the deadline
     let slotFound = false;
     let assignedSlot = -1;
 
     // Try to find the latest available slot (before or at deadline)
-    for (let slot = Math.min(currentJob.deadline - 1, maxDeadline - 1); slot >= 0; slot--) {
+    for (
+      let slot = Math.min(currentJob.deadline - 1, maxDeadline - 1);
+      slot >= 0;
+      slot--
+    ) {
       if (schedule[slot] === -1) {
         schedule[slot] = currentJob.id;
         assignedSlot = slot;
@@ -99,17 +103,26 @@ export function jobSequencingSteps(
     }
 
     // Create schedule array for visualization
-    const scheduleArray = schedule.map((jobId, timeSlot) => ({
-      timeSlot: timeSlot + 1,
-      jobId: jobId !== -1 ? jobId : 0,
-      profit: jobId !== -1 ? sortedJobs.find(j => j.id === jobId)?.profit || 0 : 0,
-    })).filter(s => s.jobId !== 0);
+    const scheduleArray = schedule
+      .map((jobId, timeSlot) => ({
+        timeSlot: timeSlot + 1,
+        jobId: jobId !== -1 ? jobId : 0,
+        profit:
+          jobId !== -1
+            ? sortedJobs.find((j) => j.id === jobId)?.profit || 0
+            : 0,
+      }))
+      .filter((s) => s.jobId !== 0);
 
     if (slotFound) {
       steps.push({
         jobs: [...jobs],
         sortedJobs: [...sortedJobs],
-        explanation: `Step ${i + 1}: Job ${currentJob.id} (profit: ${currentJob.profit}, deadline: ${currentJob.deadline}) is scheduled at time slot ${assignedSlot + 1}. This is the latest available slot before its deadline. Total profit: ${totalProfit}.`,
+        explanation: `Step ${i + 1}: Job ${currentJob.id} (profit: ${
+          currentJob.profit
+        }, deadline: ${currentJob.deadline}) is scheduled at time slot ${
+          assignedSlot + 1
+        }. This is the latest available slot before its deadline. Total profit: ${totalProfit}.`,
         currentJob: i,
         schedule: scheduleArray,
         totalProfit,
@@ -119,7 +132,11 @@ export function jobSequencingSteps(
       steps.push({
         jobs: [...jobs],
         sortedJobs: [...sortedJobs],
-        explanation: `Step ${i + 1}: Job ${currentJob.id} (profit: ${currentJob.profit}, deadline: ${currentJob.deadline}) cannot be scheduled. All time slots before its deadline are already occupied.`,
+        explanation: `Step ${i + 1}: Job ${currentJob.id} (profit: ${
+          currentJob.profit
+        }, deadline: ${
+          currentJob.deadline
+        }) cannot be scheduled. All time slots before its deadline are already occupied.`,
         currentJob: i,
         schedule: scheduleArray,
         totalProfit,
@@ -133,15 +150,19 @@ export function jobSequencingSteps(
     jobs: [...jobs],
     sortedJobs: [...sortedJobs],
     explanation: `Final result: Total profit obtained: ${totalProfit}. This is the optimal solution using the greedy approach.`,
-    schedule: schedule.map((jobId, timeSlot) => ({
-      timeSlot: timeSlot + 1,
-      jobId: jobId !== -1 ? jobId : 0,
-      profit: jobId !== -1 ? sortedJobs.find(j => j.id === jobId)?.profit || 0 : 0,
-    })).filter(s => s.jobId !== 0),
+    schedule: schedule
+      .map((jobId, timeSlot) => ({
+        timeSlot: timeSlot + 1,
+        jobId: jobId !== -1 ? jobId : 0,
+        profit:
+          jobId !== -1
+            ? sortedJobs.find((j) => j.id === jobId)?.profit || 0
+            : 0,
+      }))
+      .filter((s) => s.jobId !== 0),
     totalProfit,
     maxDeadline,
   });
 
   return steps;
 }
-

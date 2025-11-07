@@ -10,7 +10,22 @@
     <loc>https://mihnea-popescu.github.io/algorithms-visualizer/graph/dijkstra</loc>
   </url>
   <url>
+    <loc>https://mihnea-popescu.github.io/algorithms-visualizer/graph/bottleneck-path</loc>
+  </url>
+  <url>
+    <loc>https://mihnea-popescu.github.io/algorithms-visualizer/graph/prims-mst</loc>
+  </url>
+  <url>
+    <loc>https://mihnea-popescu.github.io/algorithms-visualizer/graph/kruskals-mst</loc>
+  </url>
+  <url>
+    <loc>https://mihnea-popescu.github.io/algorithms-visualizer/graph/traveling-salesman</loc>
+  </url>
+  <url>
     <loc>https://mihnea-popescu.github.io/algorithms-visualizer/dp/matrix-chain-multiplication</loc>
+  </url>
+  <url>
+    <loc>https://mihnea-popescu.github.io/algorithms-visualizer/dp/optimal-binary-search-tree</loc>
   </url>
   <url>
     <loc>https://mihnea-popescu.github.io/algorithms-visualizer/greedy/optimal-storage-on-tapes</loc>
@@ -20,6 +35,15 @@
   </url>
   <url>
     <loc>https://mihnea-popescu.github.io/algorithms-visualizer/greedy/job-sequencing</loc>
+  </url>
+  <url>
+    <loc>https://mihnea-popescu.github.io/algorithms-visualizer/greedy/job-sequencing-union-find</loc>
+  </url>
+  <url>
+    <loc>https://mihnea-popescu.github.io/algorithms-visualizer/greedy/huffman-code</loc>
+  </url>
+  <url>
+    <loc>https://mihnea-popescu.github.io/algorithms-visualizer/greedy/ternary-huffman</loc>
   </url>
   <url>
     <loc>https://mihnea-popescu.github.io/algorithms-visualizer/sorting/merge-sort</loc>

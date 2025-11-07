@@ -20,9 +20,12 @@ const categories: Category[] = [
     algorithms: [
       { name: "Floyd–Warshall", path: "/graph/floyd-warshall" },
       { name: "Dijkstra", path: "/graph/dijkstra" },
+      { name: "Bottleneck Path", path: "/graph/bottleneck-path" },
+      { name: "Prim's MST", path: "/graph/prims-mst" },
+      { name: "Kruskal's MST", path: "/graph/kruskals-mst" },
+      { name: "Traveling Salesman", path: "/graph/traveling-salesman" },
       // Placeholder for future algorithms
       // { name: "Bellman-Ford", path: "/graph/bellman-ford" },
-      // { name: "Traveling Salesman", path: "/graph/traveling-salesman" },
     ],
   },
   {
@@ -32,6 +35,10 @@ const categories: Category[] = [
       {
         name: "Matrix Chain Multiplication",
         path: "/dp/matrix-chain-multiplication",
+      },
+      {
+        name: "Optimal Binary Search Tree",
+        path: "/dp/optimal-binary-search-tree",
       },
       // Placeholder for future algorithms
       // { name: "Knapsack", path: "/dp/knapsack" },
@@ -48,6 +55,9 @@ const categories: Category[] = [
       },
       { name: "Fractional Knapsack", path: "/greedy/knapsack" },
       { name: "Job Sequencing with Deadlines", path: "/greedy/job-sequencing" },
+      { name: "Job Sequencing (Union-Find)", path: "/greedy/job-sequencing-union-find" },
+      { name: "Huffman Coding", path: "/greedy/huffman-code" },
+      { name: "Ternary Huffman Coding", path: "/greedy/ternary-huffman" },
       // Placeholder for future algorithms
     ],
   },
